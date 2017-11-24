@@ -9,7 +9,7 @@ node {
     stage ('Clean') {
         echo 'now cleaning'
         sh "./gradlew --stop"
-        sh "./gradlew clean"
+        sh "./gradlew clean --stacktrace"
     }
     stage ('Build') {
         echo 'now building'
