@@ -17,7 +17,7 @@ node {
     }
     stage ('Test'){
         echo 'now testing'
-        sh 'curl -d "id=5a16e6e30a03df150e4feaa4&path=${env.WORKSPACE}" -H "Content-Type: application/x-www-form-urlencoded" -X POST http://localhost:3000/reports'
+        sh "curl -d \“id=5a16e6e30a03df150e4feaa4&path=${env.WORKSPACE}\” -H \”Content-Type: application/x-www-form-urlencoded\” -X POST http://localhost:3000/reports"
 
     }
     
