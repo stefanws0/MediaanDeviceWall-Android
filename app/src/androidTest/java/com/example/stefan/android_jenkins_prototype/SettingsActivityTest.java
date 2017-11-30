@@ -185,6 +185,63 @@ public class SettingsActivityTest {
         appCompatImageButton2.perform(click());
 
     }
+    public void settingsActivityTest4() {
+        ViewInteraction linearLayout = onView(
+                allOf(childAtPosition(
+                        allOf(withId(android.R.id.list),
+                                withParent(withClassName(is("android.widget.LinearLayout")))),
+                        2),
+                        isDisplayed()));
+        linearLayout.perform(click());
+
+        ViewInteraction linearLayout2 = onView(
+                allOf(childAtPosition(
+                        allOf(withId(android.R.id.list),
+                                withParent(withId(android.R.id.list_container))),
+                        0),
+                        isDisplayed()));
+        linearLayout2.perform(click());
+
+        ViewInteraction checkedTextView = onView(
+                allOf(withId(android.R.id.text1),
+                        childAtPosition(
+                                allOf(IsInstanceOf.<View>instanceOf(android.widget.ListView.class),
+                                        childAtPosition(
+                                                IsInstanceOf.<View>instanceOf(android.widget.FrameLayout.class),
+                                                0)),
+                                3),
+                        isDisplayed()));
+        checkedTextView.check(matches(isDisplayed()));
+
+        ViewInteraction textView = onView(
+                allOf(IsInstanceOf.<View>instanceOf(android.widget.TextView.class), withText("Sync frequency"),
+                        childAtPosition(
+                                allOf(IsInstanceOf.<View>instanceOf(android.widget.LinearLayout.class),
+                                        childAtPosition(
+                                                IsInstanceOf.<View>instanceOf(android.widget.LinearLayout.class),
+                                                0)),
+                                0),
+                        isDisplayed()));
+        textView.check(matches(withText("Sync frequency")));
+
+        ViewInteraction appCompatCheckedTextView = onView(
+                allOf(withId(android.R.id.text1), withText("Never"),
+                        childAtPosition(
+                                allOf(withClassName(is("com.android.internal.app.AlertController$RecycleListView")),
+                                        withParent(withClassName(is("android.widget.FrameLayout")))),
+                                5),
+                        isDisplayed()));
+        appCompatCheckedTextView.perform(click());
+
+        ViewInteraction linearLayout3 = onView(
+                allOf(childAtPosition(
+                        allOf(withId(android.R.id.list),
+                                withParent(withId(android.R.id.list_container))),
+                        1),
+                        isDisplayed()));
+        linearLayout3.perform(click());
+
+    }
 
     private static Matcher<View> childAtPosition(
             final Matcher<View> parentMatcher, final int position) {
