@@ -25,7 +25,7 @@ node {
             ).trim()
         def jsonSlurper = new JsonSlurper()
         def object = jsonSlurper.parseText(STATUS);
-        if(object.success) {
+        if (!object.success) {
            error(object.stacktrace)
         } else {
             echo object.stacktrace
