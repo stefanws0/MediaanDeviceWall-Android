@@ -1,5 +1,7 @@
 #!groovy
 
+import groovy.json.JsonSlurper;
+
 node {
     stage ('Clone') {
         echo 'now cloning'
