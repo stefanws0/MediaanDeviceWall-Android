@@ -21,7 +21,13 @@ node {
             script: "curl -s -d \"id=5a43b6ec1b8b2332b3647363&path=${env.WORKSPACE}\" -H \"Content-Type: application/x-www-form-urlencoded\" -X POST http://localhost:3000/api/reports",
             returnStdout: true
             ).trim()
-        echo "this is some: ${STATUS}"
+        def jsonSlurper = new JsonSlurper()
+        def object = jsonSlurper.parseText(STATUS);
+        if(object.success) {
+           error(object.stacktrace)
+        } else {
+            echo object.stacktrace
+        }
     }
     
 }
